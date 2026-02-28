@@ -193,6 +193,7 @@ jobs:
           android-recovery/out/target/product/${{ env.DEVICE_NAME }}/ramdisk-recovery.*
         name: Unofficial TWRP for ${{ env.DEVICE_NAME }} // ${{ env.BUILD_DATE }}
         tag_name: ${{ github.run_id }}
+        token: ${{ secrets.RECOVERY_TOKEN }}
         body: |
           Build: ${{ inputs.MANIFEST_BRANCH }}
           Device: [Device Tree/Branch](${{ inputs.DEVICE_TREE }}/tree/${{ inputs.DEVICE_TREE_BRANCH }})
