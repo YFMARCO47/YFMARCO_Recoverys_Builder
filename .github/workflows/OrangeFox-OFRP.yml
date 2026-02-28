@@ -36,7 +36,7 @@ on:
       LDCHECK:
         description: 'Use LDCHECK'
         required: false
-        default: 'false'
+        default: false
         type: boolean
       LDCHECKPATH:
         description: 'Path of blobs to check' # Use it know what kind of dependencies your missing for decryption blobs.
@@ -46,7 +46,7 @@ on:
 jobs:
   build:
     name: Build OFRP by ${{ github.actor }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event.repository.owner.id == github.event.sender.id
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
