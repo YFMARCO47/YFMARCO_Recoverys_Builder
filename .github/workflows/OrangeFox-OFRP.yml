@@ -99,6 +99,17 @@ jobs:
             ./orangefox_sync_legacy.sh --branch ${{ inputs.MANIFEST_BRANCH }} --path ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         fi
 
+    - name: Ensure Guava dependency exists
+      run: |
+        cd ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
+        if [ -f external/guava/Android.bp ] && grep -q 'name:[[:space:]]*"guava"' external/guava/Android.bp; then
+          echo "guava module is already available."
+        else
+          echo "guava module missing after sync. Cloning fallback project..."
+          rm -rf external/guava
+          git clone --depth=1 https://android.googlesource.com/platform/external/guava external/guava
+        fi
+
     - name: Clone Device Tree
       run: |
         cd ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
