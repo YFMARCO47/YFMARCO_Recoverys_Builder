@@ -119,6 +119,7 @@ jobs:
         repo sync -j$(nproc --all) --force-sync
 
     - name: Ensure Guava dependency exists
+      if: inputs.MANIFEST_BRANCH == 'twrp-14.1'
       run: |
         cd android-recovery
         if [ -f external/guava/Android.bp ] && grep -q 'name:[[:space:]]*"guava"' external/guava/Android.bp; then

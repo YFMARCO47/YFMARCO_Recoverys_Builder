@@ -100,6 +100,7 @@ jobs:
         fi
 
     - name: Ensure Guava dependency exists
+      if: inputs.MANIFEST_BRANCH == '14.1'
       run: |
         cd ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
         if [ -f external/guava/Android.bp ] && grep -q 'name:[[:space:]]*"guava"' external/guava/Android.bp; then
