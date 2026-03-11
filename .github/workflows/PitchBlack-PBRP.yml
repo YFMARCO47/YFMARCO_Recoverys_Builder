@@ -45,6 +45,9 @@ on:
         required: true
         default: 'system/bin/qseecomd'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     name: Build PBRP by ${{ github.actor }}
@@ -56,7 +59,7 @@ jobs:
       contents: write
     steps:
     - name: Check Out
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Display Inputs
       run: |
@@ -197,7 +200,7 @@ jobs:
         echo "BUILD_DATE=$(date +%Y%m%d)" >> $GITHUB_ENV
 
     - name: Upload to Release
-      uses: softprops/action-gh-release@master
+      uses: softprops/action-gh-release@v2.3.0
       with:
         files: |
           android-recovery/out/target/product/${{ env.DEVICE_NAME }}/${{ env.BUILD_TARGET_NAME }}.img
