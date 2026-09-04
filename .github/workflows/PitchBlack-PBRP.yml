@@ -32,9 +32,9 @@ on:
         type: choice
         options:
         - pbrp
-        - bootimage
-        - recoveryimage
-        - vendorbootimage
+        - boot
+        - recovery
+        - vendorboot
       LDCHECK:
         description: 'Use LDCHECK'
         required: false
